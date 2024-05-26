@@ -1,0 +1,16 @@
+#compdef mob
+
+source _mobLib
+
+_arguments \
+  '1:cmd:_commands' \
+  '*::args:->args'
+
+if [[ $state == 'args' ]]; then
+  case $words[$CURRENT-1] in
+    '--branch' )
+      _branchArgValues ;;
+    *)
+      "_$words[1]Args" ;;    
+  esac
+fi
