@@ -4,8 +4,12 @@
 find lib/mob -type f -exec cat {} + \
 | grep -v "\#\!\/bin\/sh" \
 | grep -v '^source' \
-> dist/_mobLib &&
+> build/_mobLib &&
 
 cat lib/_mob \
-| sed "s@_mobLib@$completionDir/_mobLib@g" \
-> dist/_mob
+| grep -v "\#compdef mob" \
+| grep -v '^$mobLib' \
+> build/_mob &&
+
+echo "#compdef mob" | cat - build/_mobLib build/_mob > dist/_mob
+
