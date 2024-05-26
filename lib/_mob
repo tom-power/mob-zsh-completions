@@ -7,10 +7,10 @@ _arguments \
   '*::args:->args'
 
 if [[ $state == 'args' ]]; then
-  case $words[$CURRENT-1] in
+  case ${words[$CURRENT-1]} in
     '--branch' )
       _branchArgValues ;;
     *)
-      "_$words[1]Args" ;;    
+      "_${words[1]Args}" ;;    
   esac
 fi
