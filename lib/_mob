@@ -1,6 +1,6 @@
 #compdef mob
 
-source _mobLib
+$mobLib
 
 _arguments \
   '1:cmd:_commands' \
