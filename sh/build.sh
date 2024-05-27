@@ -1,7 +1,6 @@
 #!/bin/sh
 . sh/.env &&
-
-find lib/mob -type f -exec cat {} + \
+find lib/mob -type f ! -name "*.example" -exec cat {} + \
 | grep -v "\#\!\/bin\/sh" \
 | grep -v '^source' \
 > build/_mobLib &&
