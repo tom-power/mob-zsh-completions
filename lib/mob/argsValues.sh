@@ -1,11 +1,4 @@
 #!/bin/sh
-
-_jiraTicketsCurrent() {
-  jira issue list \
-    --label "Checkout_Team" -q"type in ('Sub-task', Story) and status in ('In Progress')"  \
-    --plain --no-headers --columns key,summary
-}
-
 _branchArgValuesJira() {
   local -a tickets ticketsKeysDescriptions ticketsKeys
   local tickets=("${(f)"$(_jiraTicketsCurrent)"}")
@@ -17,7 +10,7 @@ _branchArgValuesJira() {
 }
 
 _branchArgValues() {
-  if [ "$(command -v jira)" ]; then
+  if [[ "$(command -v jira)" ]]; then
     _branchArgValuesJira
   fi
 }
