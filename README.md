@@ -10,9 +10,9 @@ Add `sh/.env` with the path to your custom completions directory, then run `sh/i
 
 After [remotemobprogramming/mob](https://github.com/remotemobprogramming/mob) installation, run `mob` and `tab` for commands/options.
 
-### Jira tickets for --branch
+### Jira tickets for -b
 
-If [jira-cli](https://github.com/ankitpokhrel/jira-cli) is installed, the script will populate `--branch` argument values with the output of `_jiraTicketsCurrent`.
+If [jira-cli](https://github.com/ankitpokhrel/jira-cli) is installed and configured, the script will populate `-b` argument values with the output of `_jiraTicketsCurrent`.
 
 See below and `lib/mob/_jiraTicketsCurrent.example` for examples:
 
