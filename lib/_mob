@@ -12,7 +12,7 @@ fi
 
 if [[ $state == 'args' ]]; then
   case $words[$CURRENT-1] in
-    '--branch' )
+    '-b' )
       _branchArgValues ;;
     *)
     case $words[1] in

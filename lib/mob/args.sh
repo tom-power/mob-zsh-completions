@@ -1,15 +1,15 @@
 _startArgs() {
   _arguments \
-    '--include-uncommitted-changes[Move uncommitted changes to wip branch]' \
-    '--branch[Set wip branch to "mob/<base-branch>-<branch-postfix>"]' \
+    '-i[Move uncommitted changes to wip branch]' \
+    '-b[Set wip branch to "mob/<base-branch>-<branch-postfix>"]' \
     '--create[Create the remote branch]'
 }
 
 _nextArgs() {
   _arguments \
-    '--stay[Stay on wip branch (default)]' \
-    '--return-to-base-branch[Return to base branch]' \
-    '--message[Override commit message]'
+    '-s[Stay on wip branch (default)]' \
+    '-r[Return to base branch]' \
+    '-m[Override]commit message]'
 }
 
 _doneArgs() {
@@ -21,5 +21,5 @@ _doneArgs() {
 
 _resetArgs() {
   _arguments \
-    '--branch[Set wip branch to "mob/<base-branch>/<branch-postfix>"]'
+    '-b[Set wip branch to "mob/<base-branch>/<branch-postfix>"]'
 }
