@@ -1,7 +1,7 @@
 _startArgs() {
   _arguments \
     '-i[Move uncommitted changes to wip branch]' \
-    '-b[Set wip branch to "mob/<base-branch>-<branch-postfix>"]' \
+    '-b[Set wip branch to "mob/<base-branch>-<branch-postfix>"]:' \
     '--create[Create the remote branch]'
 }
 
@@ -21,5 +21,5 @@ _doneArgs() {
 
 _resetArgs() {
   _arguments \
-    '-b[Set wip branch to "mob/<base-branch>/<branch-postfix>"]'
+    '-b[Set wip branch to "mob/<base-branch>/<branch-postfix>"]:'
 }
