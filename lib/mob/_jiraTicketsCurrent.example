@@ -1,5 +1,0 @@
-_jiraTicketsCurrent() {
-  jira issue list \
-    --label "My_Team" -q"type in ('Sub-task', Story) and status in ('In Progress')"  \
-    --plain --no-headers --columns key,summary
-}

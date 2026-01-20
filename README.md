@@ -4,22 +4,8 @@ Completions for the [remotemobprogramming/mob](https://github.com/remotemobprogr
 
 ### Installation
 
-Add `sh/.env` with the path to your custom completions directory, then run `sh/install.sh`
+#### Antidote
 
-### Usage
-
-After [remotemobprogramming/mob](https://github.com/remotemobprogramming/mob) installation, run `mob` and `tab` for commands/options.
-
-### Jira tickets for -b
-
-If [jira-cli](https://github.com/ankitpokhrel/jira-cli) is installed and configured, the script will populate `-b` argument values with the output of `_jiraTicketsCurrent`.
-
-See below and `lib/mob/_jiraTicketsCurrent.example` for examples:
-
-```
-_jiraTicketsCurrent() {
-  jira issue list \
-    --label "My_Team" -q"type in ('Sub-task', Story) and status in ('In Progress')"  \
-    --plain --no-headers --columns key,summary
-}
+```shell
+tom-power/mob-zsh-completions kind:fpath
 ```
