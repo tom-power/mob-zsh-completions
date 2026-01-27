@@ -1,45 +1,65 @@
 #compdef mob
 _startArgs() {
   _arguments \
-    '-i[Move uncommitted changes to wip branch]' \
-    '-b[Set wip branch to "mob/<base-branch>-<branch-postfix>"]:' \
-    '--create[Create the remote branch]'
+    '--include-uncommitted-changes[Move uncommitted changes to wip branch]' \
+    '--discard-uncommitted-changes[Discard uncommitted changes]' \
+    '--branch[Set wip branch to "mob/<base-branch>-<branch-postfix>"]:branch postfix' \
+    '--create[Create the remote branch]' \
+    '--join[Join existing wip branch]' \
+    '--room[Set room name for timer.mob.sh once]:room name' \
+    '--debug[Enable verbose logging]'
 }
 
 _nextArgs() {
   _arguments \
-    '-s[Stay on wip branch (default)]' \
-    '-r[Return to base branch]' \
-    '-m[Override commit message]'
+    '--stay[Stay on wip branch (default)]' \
+    '--return-to-base-branch[Return to base branch]' \
+    '--message[Override commit message]:commit message' \
+    '--debug[Enable verbose logging]'
 }
 
 _doneArgs() {
   _arguments \
     '--no-squash[Squash no commits from wip branch, only merge wip branch]' \
     '--squash[Squash all commits from wip branch]' \
-    '--squash-wip[Squash wip commits from wip branch, maintaining manual commits]'
+    '--squash-wip[Squash wip commits from wip branch, maintaining manual commits]' \
+    '--debug[Enable verbose logging]'
 }
 
 _resetArgs() {
   _arguments \
-    '-b[Set wip branch to "mob/<base-branch>/<branch-postfix>"]:'
+    '--branch[Set wip branch to "mob/<base-branch>-<branch-postfix>"]:branch postfix' \
+    '--debug[Enable verbose logging]'
+}
+
+_timerArgs() {
+  _arguments \
+    '--room[Set room name for timer.mob.sh once]:room name' \
+    '--debug[Enable verbose logging]'
+}
+
+_goalArgs() {
+  _arguments \
+    '--delete[Deletes the goal of your timer.mob.sh room]' \
+    '--debug[Enable verbose logging]'
 }
 _commands() {
   _values -s ' ' 'cmd' \
-    'start[start session from base branch in wip branch and a <mintues> timer]' \
-    'next[handover changes in wip branch to next person]' \
-    'done[squashes all changes in wip branch to index in base branch]' \
-    'reset[removes local and remote wip branch]' \
-    'clean[removes all orphan wip branches]' \
-    'status[show the status of the current session]' \
-    'fetch[fetch remote state]' \
-    'branch[show remote wip branches]' \
-    'config[show all configuration options]' \
-    'version[show the version]' \
-    'help[show help]' \
-    'timer[start a <minutes> timer]' \
-    'break[start a <minutes> break timer]' \
-    'moo[!moo]'
+    'start[Start session from base branch in wip branch]' \
+    'next[Handover changes in wip branch to next person]' \
+    'done[Squash all changes in wip branch to index in base branch]' \
+    'reset[Remove local and remote wip branch]' \
+    'clean[Removes all orphan wip branches]' \
+    'status[Show status of the current session]' \
+    'fetch[Fetch remote state]' \
+    'branch[Show remote wip branches]' \
+    'config[Show all configuration options]' \
+    'version[Show tool version]' \
+    'help[Show help]' \
+    'timer[Start a <minutes> timer]' \
+    'break[Start a <minutes> break timer]' \
+    'goal[Get or set the current goal of your timer.mob.sh room]' \
+    'moo[Moo!]'
 }
 
 _branchArgValuesJira() {
@@ -69,7 +89,7 @@ fi
 
 if [[ $state == 'args' ]]; then
   case $words[$CURRENT-1] in
-    '-b' )
+    '--branch' )
       _branchArgValues ;;
     *)
     case $words[1] in
@@ -81,6 +101,10 @@ if [[ $state == 'args' ]]; then
         _doneArgs ;;
       'reset' )
         _resetArgs ;;
+      'timer' )
+        _timerArgs ;;
+      'goal' )
+        _goalArgs ;;
       *)
     esac
   esac
