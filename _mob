@@ -10,7 +10,7 @@ _nextArgs() {
   _arguments \
     '-s[Stay on wip branch (default)]' \
     '-r[Return to base branch]' \
-    '-m[Override]commit message]'
+    '-m[Override commit message]'
 }
 
 _doneArgs() {
