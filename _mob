@@ -1,4 +1,7 @@
 #compdef mob
+
+_debugArg='--debug[Enable verbose logging]'
+
 _startArgs() {
   _arguments \
     '--include-uncommitted-changes[Move uncommitted changes to wip branch]' \
@@ -7,7 +10,7 @@ _startArgs() {
     '--create[Create the remote branch]' \
     '--join[Join existing wip branch]' \
     '--room[Set room name for timer.mob.sh once]:room name' \
-    '--debug[Enable verbose logging]'
+    $_debugArg
 }
 
 _nextArgs() {
@@ -15,34 +18,34 @@ _nextArgs() {
     '--stay[Stay on wip branch (default)]' \
     '--return-to-base-branch[Return to base branch]' \
     '--message[Override commit message]:commit message' \
-    '--debug[Enable verbose logging]'
+    $_debugArg
 }
 
 _doneArgs() {
   _arguments \
-    '--debug[Enable verbose logging]' \
   + '(squash-mode)' \
     '--no-squash[Squash no commits from wip branch, only merge wip branch]' \
     '--squash[Squash all commits from wip branch]' \
-    '--squash-wip[Squash wip commits from wip branch, maintaining manual commits]'
+    '--squash-wip[Squash wip commits from wip branch, maintaining manual commits]' \
+    $_debugArg
 }
 
 _resetArgs() {
   _arguments \
     '--branch[Set wip branch to "mob/<base-branch>-<branch-postfix>"]:branch postfix' \
-    '--debug[Enable verbose logging]'
+    $_debugArg
 }
 
 _timerArgs() {
   _arguments \
     '--room[Set room name for timer.mob.sh once]:room name' \
-    '--debug[Enable verbose logging]'
+    $_debugArg
 }
 
 _goalArgs() {
   _arguments \
     '--delete[Deletes the goal of your timer.mob.sh room]' \
-    '--debug[Enable verbose logging]'
+    $_debugArg
 }
 _commands() {
   _values -s ' ' 'cmd' \
@@ -62,23 +65,6 @@ _commands() {
     'goal[Get or set the current goal of your timer.mob.sh room]' \
     'moo[Moo!]'
 }
-
-_branchArgValuesJira() {
-  local -a tickets ticketsKeysDescriptions ticketsKeys
-  local tickets=("${(f)"$(_jiraTicketsCurrent)"}")
-  for ticket in "${tickets[@]}"; do
-     ticketsKeysDescriptions+=$(echo "${ticket/$(echo -e '\t')/ -- }")
-     ticketsKeys+=$(echo "$ticket" | cut -d$'\t' -f 1)
-  done
-  compadd -d ticketsKeysDescriptions -a ticketsKeys
-}
-
-_branchArgValues() {
-  if [[ "$(command -v jira)" ]]; then
-    _branchArgValuesJira
-  fi
-}
-
 
 _arguments \
   '1:cmd:_commands' \
