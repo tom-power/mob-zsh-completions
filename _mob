@@ -20,10 +20,11 @@ _nextArgs() {
 
 _doneArgs() {
   _arguments \
+    '--debug[Enable verbose logging]' \
+  + '(squash-mode)' \
     '--no-squash[Squash no commits from wip branch, only merge wip branch]' \
     '--squash[Squash all commits from wip branch]' \
-    '--squash-wip[Squash wip commits from wip branch, maintaining manual commits]' \
-    '--debug[Enable verbose logging]'
+    '--squash-wip[Squash wip commits from wip branch, maintaining manual commits]'
 }
 
 _resetArgs() {
